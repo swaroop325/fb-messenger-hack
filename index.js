@@ -11,7 +11,7 @@ var database    = require('./database');
 var bodyParser     = require('body-parser');
 
 // Mongoose connection
-mongoose.connect(database[process.env.NODE_ENV].url);
+mongoose.connect('mongodb+srv://user:user@cluster0-tuhhf.mongodb.net/test?retryWrites=true&w=majority');
 
 // Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({'extended':'true'}));
