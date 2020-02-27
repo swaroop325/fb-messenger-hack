@@ -13,7 +13,7 @@ module.exports = function(app) {
     res.status(200).json('Sucessfull');
 
     // Save User to MongoDB
-    userService.saveUser(req.body.originalRequest.data.sender.id);
+    userService.saveUser(req.body.originalRequest.payload.data.sender.id);
   });
 }
 
