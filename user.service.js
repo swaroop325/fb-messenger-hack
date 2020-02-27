@@ -14,7 +14,7 @@ function saveUser(facebookId, firstName, lastName) {
       firstName: firstName || userData.first_name,
       lastName: lastName || userData.last_name
     };
-
+    console.log(user);
     User.collection.findOneAndUpdate({facebookId : facebookId}, user, {upsert:true}, function(err, user){
       if (err) console.log(err);
       else console.log('user saved');
