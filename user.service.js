@@ -31,6 +31,11 @@ function saveUser(request,response,facebookId, firstName, lastName) {
       if (err) return handleError(err);
       console.log("saved!!!")
     });
+    var log = new LogCollection(logData)
+    log.save(function (err) {
+    if (err) return handleError(err);
+    console.log("saved log!!!")
+  });
   });
 }
 function saveLog(request, response){
