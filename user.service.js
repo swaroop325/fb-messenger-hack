@@ -20,7 +20,7 @@ function saveUser(request, response, facebookId, firstName, lastName) {
       lastName: lastName || userData.last_name
     };
     let logData = {
-      request: request,
+      request: request || null,
       response: response || null
     };
     console.log(logData);
@@ -28,12 +28,13 @@ function saveUser(request, response, facebookId, firstName, lastName) {
     doc.save(function (err) {
       if (err) return handleError(err);
       console.log("saved!!!")
-      var log = new LogCollection(logData);
-      log.save(function (err) {
-        if (err) return handleError(err);
-        console.log("saved log!!!")
-      });
+    
       
+    });
+    var log = new LogCollection(logData);
+    log.save(function (err) {
+      if (err) return handleError(err);
+      console.log("saved log!!!")
     });
   });
 }
