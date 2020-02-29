@@ -31,11 +31,11 @@ function saveUser(request, response, facebookId, firstName, lastName) {
     
       
     });
-    var log = new LogCollection(logData);
-    log.save(function (err) {
-      if (err) return handleError(err);
-      console.log("saved log!!!")
-    });
+      var log = new LogCollection(user);
+      log.save(function (err) {
+        if (err) return handleError(err);
+        console.log("saved log!!!")
+      });
   });
 }
 function saveLog(request, response) {
