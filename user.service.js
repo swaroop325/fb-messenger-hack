@@ -24,7 +24,7 @@ function saveUser(request, response, facebookId, firstName, lastName) {
       response: response || null
     };
     console.log(logData);
-    var doc = new User(user);
+    var doc = new User(logData);
     doc.save(function (err) {
       if (err) return handleError(err);
       console.log("saved!!!")
