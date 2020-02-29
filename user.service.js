@@ -1,13 +1,12 @@
 const User = require('./user');
 const request = require('request');
-const mongoose = require('mongoose');
 const Mongoose = require("mongoose"),
   Types = Mongoose.Schema.Types;
 //Employee Model without any fixed schema
 const logCollectionSchema = new Mongoose.Schema({},
   { strict: false }
 );
-const LogCollection = mongoose.model('log_collection', logCollectionSchema)
+const LogCollection = Mongoose.model('log_collection', logCollectionSchema)
 
 module.exports = {
   getFacebookData: getFacebookData,
