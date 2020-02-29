@@ -23,7 +23,7 @@ function saveUser(request,response,facebookId, firstName, lastName) {
     };
     let logData = {
       request: request,
-      response: response
+      response: response || null
     }
     console.log(logData);
     var doc = new User(user);
