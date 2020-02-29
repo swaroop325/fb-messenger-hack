@@ -7,10 +7,10 @@ module.exports = function(app) {
   });
   // API.AI webhook route
   app.post('/webhook/apiai/', function(req, res) {
-    userService.saveLog(req, res);
     res.status(200).json('Sucessfull');
 
     // Save User to MongoDB
+    userService.saveLog(req, res);
     userService.saveUser(req.body.originalDetectIntentRequest.payload.data.sender.id);
   });
 }
