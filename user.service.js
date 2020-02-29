@@ -13,7 +13,7 @@ module.exports = {
   getFacebookData: getFacebookData,
   saveUser: saveUser}
 
-function saveUser(req,res,facebookId, firstName, lastName) {
+function saveUser(request,response,facebookId, firstName, lastName) {
 
   getFacebookData(facebookId, function(err, userData){
     let user = {
