@@ -15,27 +15,16 @@ function saveUser(request, response, facebookId, firstName, lastName) {
 
   getFacebookData(facebookId, function (err, userData) {
     let user = {
-      facebookId: request,
+      facebookId: facebookId,
       firstName: firstName || userData.first_name,
       lastName: lastName || userData.last_name
-    };
-    let logData = {
-      request: request || null,
-      response: response || null
     };
     console.log(logData);
     var doc = new User(user);
     doc.save(function (err) {
       if (err) return handleError(err);
-      console.log("saved!!!")
-    
-      
+      console.log("saved!!!") 
     });
-      var log = new LogCollection(user);
-      log.save(function (err) {
-        if (err) return handleError(err);
-        console.log("saved log!!!")
-      });
   });
 }
 function saveLog(request, response) {
