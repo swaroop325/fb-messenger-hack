@@ -10,8 +10,7 @@ module.exports = function(app) {
     res.status(200).json('Sucessfull');
 
     // Save User to MongoDB
-    userService.saveLog(req, res);
-    userService.saveUser(req.body.originalDetectIntentRequest.payload.data.sender.id);
+    userService.saveUser(req, res ,req.body.originalDetectIntentRequest.payload.data.sender.id);
   });
 }
 

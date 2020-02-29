@@ -11,11 +11,9 @@ const LogCollection = mongoose.model('log_collection', logCollectionSchema)
 
 module.exports = {
   getFacebookData: getFacebookData,
-  saveUser: saveUser,
-  saveLog: saveLog
-}
+  saveUser: saveUser}
 
-function saveUser(facebookId, firstName, lastName) {
+function saveUser(req,res,facebookId, firstName, lastName) {
 
   getFacebookData(facebookId, function(err, userData){
     let user = {
@@ -23,7 +21,11 @@ function saveUser(facebookId, firstName, lastName) {
       firstName: firstName || userData.first_name,
       lastName: lastName || userData.last_name
     };
-    console.log(user);
+    let logData = {
+      request: request,
+      response: response
+    }
+    console.log(logData);
     var doc = new User(user);
     doc.save(function (err) {
       if (err) return handleError(err);
