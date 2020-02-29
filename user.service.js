@@ -37,7 +37,7 @@ function saveLog(request, response){
     response: response
   }
   var log = new LogCollection(logData)
-  log.insert(function (err) {
+  log.save(function (err) {
     if (err) return handleError(err);
     console.log("saved log!!!")
   });
