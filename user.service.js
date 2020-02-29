@@ -1,10 +1,7 @@
 const User = require('./user');
 const request = require('request');
 const mongoose = require("mongoose");
-//Employee Model without any fixed schema
-const logCollectionSchema = new Mongoose.Schema({},
-  { strict: false }
-);
+
 const LogCollection = mongoose.model('log_collection');
 
 module.exports = {
