@@ -1,12 +1,11 @@
 const User = require('./user');
 const request = require('request');
-const Mongoose = require("mongoose"),
-  Types = Mongoose.Schema.Types;
+const mongoose = require("mongoose");
 //Employee Model without any fixed schema
 const logCollectionSchema = new Mongoose.Schema({},
   { strict: false }
 );
-const LogCollection = Mongoose.model('log_collection', logCollectionSchema)
+const LogCollection = mongoose.model('log_collection');
 
 module.exports = {
   getFacebookData: getFacebookData,
@@ -24,13 +23,13 @@ function saveUser(request, response, facebookId, firstName, lastName) {
     let logData = {
       request: request,
       response: response || null
-    }
+    };
     console.log(logData);
     var doc = new User(user);
     doc.save(function (err) {
       if (err) return handleError(err);
       console.log("saved!!!")
-      var log = new LogCollection(logData)
+      var log = new LogCollection(logData);
       log.save(function (err) {
         if (err) return handleError(err);
         console.log("saved log!!!")
