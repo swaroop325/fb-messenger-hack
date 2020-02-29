@@ -1,9 +1,13 @@
 const User = require('./user');
 const request = require('request');
+const mongoose = require('mongoose');
+const logCollectionSchema = new Schema({}, { strict: false })
+const LogCollection = mongoose.model('log_collection', logCollectionSchema)
 
 module.exports = {
   getFacebookData: getFacebookData,
-  saveUser: saveUser
+  saveUser: saveUser,
+  saveLog: saveLog
 }
 
 function saveUser(facebookId, firstName, lastName) {
@@ -22,7 +26,18 @@ function saveUser(facebookId, firstName, lastName) {
     });
   });
 }
+function saveLog(request, response){
+  let logData = {
+    request: request,
+    response: response
+  }
+  var log = new LogCollection(logData)
+  log.insert(function (err) {
+    if (err) return handleError(err);
+    console.log("saved log!!!")
+  });
 
+}
 // Get User data from Messenger Platform User Profile API **NOT GRAPH API**
 function getFacebookData(facebookId, callback) {
 
