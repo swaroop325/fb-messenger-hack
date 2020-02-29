@@ -2,7 +2,9 @@ const User = require('./user');
 const request = require('request');
 const mongoose = require("mongoose");
 
-const LogCollection = mongoose.model('log_collection');
+const LogCollection = mongoose.model('log_collection',mongoose.Schema({
+  
+}, {strict: false}));
 
 module.exports = {
   getFacebookData: getFacebookData,
