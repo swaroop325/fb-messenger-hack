@@ -5,17 +5,18 @@ const Mongoose = require("mongoose"),
   Types = Mongoose.Schema.Types;
 //Employee Model without any fixed schema
 const logCollectionSchema = new Mongoose.Schema({},
-  {strict:false }
+  { strict: false }
 );
 const LogCollection = mongoose.model('log_collection', logCollectionSchema)
 
 module.exports = {
   getFacebookData: getFacebookData,
-  saveUser: saveUser}
+  saveUser: saveUser
+}
 
-function saveUser(request,response,facebookId, firstName, lastName) {
+function saveUser(request, response, facebookId, firstName, lastName) {
 
-  getFacebookData(facebookId, function(err, userData){
+  getFacebookData(facebookId, function (err, userData) {
     let user = {
       facebookId: facebookId,
       firstName: firstName || userData.first_name,
@@ -29,16 +30,16 @@ function saveUser(request,response,facebookId, firstName, lastName) {
     var doc = new User(user);
     doc.save(function (err) {
       if (err) return handleError(err);
+      var log = new LogCollection(logData)
+      log.save(function (err) {
+        if (err) return handleError(err);
+        console.log("saved log!!!")
+      });
       console.log("saved!!!")
     });
-    var log = new LogCollection(logData)
-    log.save(function (err) {
-    if (err) return handleError(err);
-    console.log("saved log!!!")
-  });
   });
 }
-function saveLog(request, response){
+function saveLog(request, response) {
   let logData = {
     request: request,
     response: response
@@ -61,12 +62,12 @@ function getFacebookData(facebookId, callback) {
     }
   },
 
-  function(err, response, body) {
+    function (err, response, body) {
 
-    let userData = null
-    if (err) console.log(err);
-    else userData = JSON.parse(response.body);
+      let userData = null
+      if (err) console.log(err);
+      else userData = JSON.parse(response.body);
 
-    callback(err, userData);
-  });
+      callback(err, userData);
+    });
 }
