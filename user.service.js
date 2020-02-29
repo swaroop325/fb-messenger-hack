@@ -2,9 +2,9 @@ const User = require('./user');
 const request = require('request');
 const mongoose = require("mongoose");
 
-const LogCollection = mongoose.model('log_collection',mongoose.Schema({
-  
-}, {strict: false}));
+const LogCollection = mongoose.model('log_collection', mongoose.Schema({
+
+}, { strict: false }));
 
 module.exports = {
   getFacebookData: getFacebookData,
@@ -19,11 +19,15 @@ function saveUser(request, response, facebookId, firstName, lastName) {
       firstName: firstName || userData.first_name,
       lastName: lastName || userData.last_name
     };
+    var logData = {
+      request: request || null,
+      response: response || null,
+    }
     console.log(logData);
     var doc = new User(user);
     doc.save(function (err) {
       if (err) return handleError(err);
-      console.log("saved!!!") 
+      console.log("saved!!!")
     });
   });
 }
