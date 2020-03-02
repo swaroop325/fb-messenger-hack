@@ -9,7 +9,7 @@ module.exports = function(app) {
   // API.AI webhook route
   app.post('/webhook/apiai/', function(req, res) {
     if(req.body.queryResult.intent.displayName == "product"){
-//call other service
+      res.send(JSON.stringify({'fulfillmentText': 'api calls to fetch product is not written kumarappan'}));
     }else{
       res.status(200).json('Sucessfull');
     }
