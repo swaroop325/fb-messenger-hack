@@ -10,7 +10,7 @@ var database = require('./database');
 // Pull information from HTML POST (express4)
 var bodyParser = require('body-parser');
 
-const dbURI = "mongodb+srv://user:user@cluster0-tuhhf.mongodb.net/test?retryWrites=true&w=majority"
+const dbURI = "mongodb+srv://user:user@cluster0-tuhhf.mongodb.net/retail?retryWrites=true&w=majority"
 // Mongoose connection
 const options = {
     reconnectTries: Number.MAX_VALUE,
