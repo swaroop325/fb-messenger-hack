@@ -37,9 +37,7 @@ module.exports = function (app) {
     } else if (req.body.queryResult.intent.displayName == "offer") {
       console.log("enter")
       offer.find({}, 'swaroop', function (error, documents) {
-      
-          console.log(documents)
-      
+          console.log(documents);
       });
       res.send(JSON.stringify({'fulfillmentText': 'api calls to fetch product is not written kumarappan'}));
     } else {
