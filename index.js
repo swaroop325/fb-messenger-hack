@@ -5,7 +5,6 @@ var app = express();
 var port = process.env.PORT || 8000;
 
 var mongoose = require('mongoose');
-var database = require('./database');
 
 // Pull information from HTML POST (express4)
 var bodyParser = require('body-parser');
@@ -27,6 +26,8 @@ mongoose.connect(dbURI, options).then(
 );
 // Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ 'extended': 'true' }));
+
+app.use(express.static('public'))
 
 // Parse application/json
 app.use(bodyParser.json());
