@@ -36,7 +36,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 // Routes
-require('./api-ai.js')(app);
+require('./app/api-ai')(app);
 
 // Listen (start app with node index.js)
 app.listen(port);

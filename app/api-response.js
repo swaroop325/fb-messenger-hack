@@ -1,6 +1,6 @@
-const product = require('./schemas/product');
-const offers = require('./schemas/offers');
-const categories = require('./schemas/categories');
+const product = require('./../schemas/product');
+const offers = require('./../schemas/offers');
+const categories = require('./../schemas/categories');
 
 module.exports = {
     respond: respond
