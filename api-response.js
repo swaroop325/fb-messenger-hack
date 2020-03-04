@@ -32,9 +32,10 @@ function respond(apiIntent, request, response) {
                         "subtitle": e.weight,
                         "imageUri": e.image,
                         "buttons": [
-                            {
+                            {   "type": "web_url",
                                 "text": "Rs." + e.price,
-                                "postback": "https://needs-store.herokuapp.com/"
+                                "postback": "https://needs-store.herokuapp.com/",
+                                "messenger_extensions": true
                             }
                         ]
                     }
@@ -75,6 +76,8 @@ function respond(apiIntent, request, response) {
                             "imageUri": e.image,
                             "buttons": [
                                 {
+                                    "type": "web_url",
+                                    "messenger_extensions": true,
                                     "text": "Rs." + (e.price - (e.price * discount)),
                                     "postback": "https://needs-store.herokuapp.com/"
                                 }
