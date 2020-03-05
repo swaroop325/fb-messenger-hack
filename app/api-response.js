@@ -32,7 +32,8 @@ function respond(apiIntent, request, response) {
                         "subtitle": e.weight,
                         "imageUri": e.image,
                         "buttons": [
-                            {   "type": "web_url",
+                            {
+                                "type": "web_url",
                                 "text": "Rs." + e.price,
                                 "postback": "https://needs-store.herokuapp.com/",
                                 "messenger_extensions": true
@@ -90,6 +91,50 @@ function respond(apiIntent, request, response) {
                     "fulfillmentMessages": products
                 });
             });
+        });
+    } else if (apiIntent == "productName") {
+        var productName = request.body.queryResult.parameters.productname
+        var regex = new RegExp(["^", productName, "$"].join(""), "i");
+        product.find({ "name": regex }, '', function (error, documents) {
+            if (documents.length == 0) {
+                categories.find({}, 'name', function (error, documents) {
+                    var products = documents.map(e => {
+                        return e.name;
+                    })
+                    response.send(JSON.stringify({
+                        "fulfillmentMessages": [
+                            {
+                                "quickReplies": {
+                                    "title": "Sorry we could not find the product you just said, please choose from the categories below...",
+                                    "quickReplies": products
+                                },
+                                "platform": "FACEBOOK"
+                            }]
+                    }));
+                });
+            } else {
+                var products = documents.map(e => {
+                    var info = {
+                        "card": {
+                            "title": e.name,
+                            "subtitle": e.weight,
+                            "imageUri": e.image,
+                            "buttons": [
+                                {
+                                    "type": "web_url",
+                                    "text": "Rs." + e.price,
+                                    "postback": "https://needs-store.herokuapp.com/",
+                                    "messenger_extensions": true
+                                }
+                            ]
+                        }
+                    }
+                    return info;
+                })
+                response.send({
+                    "fulfillmentMessages": products
+                });
+            }
         });
     } else {
         response.status(200).json('Sucessfull');
