@@ -21,7 +21,7 @@
   "homepage": "https://github.com/swaroop325/fb-messenger-hack#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mongoose": "^5.9.2",
     "request": "^2.88.2"
   }
